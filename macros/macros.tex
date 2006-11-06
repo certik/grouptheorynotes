@@ -1,0 +1,179 @@
+\input eplain   
+\input epsf
+
+\input braket.sty
+
+%\chyph
+\csaccents
+
+\magnification\magstep1
+
+\voffset=+0.5cm
+\hoffset=+1.1cm
+\advance \vsize by -0.5cm
+\advance \hsize by -1.1cm
+%\hsize=5cm
+
+
+\def\vspace#1{\vskip#1}
+\font\twelverm=csr12
+\def\large{\twelverm}
+\font\twelvebf=csbx12
+\font\Large=\fontname\twelvebf\space scaled\magstep1
+
+\newcount\eqcount
+\def\incno#1{\global\advance\eqcount1\definexref{#1}{\the\eqcount}{eq}}
+\def\no#1{\incno{#1}\eqno{(\the\eqcount)}}
+\def\nno#1{\incno{#1}&{(\the\eqcount)}}
+\def\rno#1{(\refn{#1})}
+
+
+\def\mydots{\leaders\hbox{$\mkern1.5mu.\mkern1.5mu$}\hfill}
+\def\tocsecentry#1#2#3{\medskip\line{\bf#2 #1\thinspace\hfill#3}}
+\def\tocsubentry#1#2#3{\line{\quad#2 #1\thinspace\mydots#3}}
+\def\tocunnumberedentry#1#2{\medskip\line{\bf#1\thinspace\hfill#2}}
+
+\newcount\secno
+\newcount\subno
+\def\secskip{\vskip 18pt plus 6pt minus 6pt}
+
+\font\titlefont=\fontname\tenbf\space scaled\magstep2
+\font\subfont=\fontname\tenbf\space scaled\magstep1
+\font\subsubfont=\fontname\tenbf\space scaled\magstep0
+\font\progfont=cstt8
+\def\title#1{\centerline{\titlefont #1}\bigskip}
+\def\sec#1\par{\advance\secno by1\subno=0\secskip\goodbreak\noindent%
+{\subfont \the\secno. #1}%
+\writenumberedtocentry{sec}{#1}{\the\secno.}\medskip\nobreak\noindent}
+\def\sub#1\par{\advance\subno by 1\medskip\goodbreak\noindent%
+{\edef\n{\the\secno.\the\subno}{\subsubfont\n\ #1}%
+\writenumberedtocentry{sub}{#1}{\n}}\par\nobreak\noindent}
+
+\newcount\figno
+\def\dref#1{\global\advance\figno by 1\definexref{#1}{\the\figno}{}\the\figno}
+
+%\font\twelverm=csr12
+\def\d{{\rm d}}
+
+\def\psfig#1#2#3{\medskip\noindent\epsfxsize=\hsize\epsfbox{#1}
+\centerline{Fig. \dref{#2}: #3}\medskip}
+
+\def\psfigw#1#2#3#4{\medskip\noindent\hfill\epsfxsize=#4\epsfbox{#1}\hfill\break
+\centerline{Fig. \dref{#2}: #3}\medskip}
+
+\def\y#1{(#1 let)}
+\def\degrees{^\circ}
+
+%\def\chapter#1{\sec#1}
+%\def\section#1{\sub#1}
+
+\def\chapter#1\par{\advance\secno by1\subno=0\secskip\goodbreak\vfill\eject\noindent%
+{\Large Chapter \the\secno\bigskip\noindent#1}%
+\writenumberedtocentry{sec}{#1}{\the\secno}\medskip\nobreak\noindent}
+
+\def\section#1\par{\advance\subno by 1\bigskip\goodbreak\noindent%
+{\edef\n{\the\secno.\the\subno}{\twelvebf\n\ #1}%
+\writenumberedtocentry{sub}{#1}{\n}}\smallskip\nobreak\noindent}
+
+\def\unnumberedchapter#1{\secskip\goodbreak\vfill\eject\noindent%
+{\Large #1}%
+\writetocentry{unnumbered}{#1}\medskip\nobreak\noindent}
+
+\def\unnumberedchapter#1{\secskip\goodbreak\vfill\eject\noindent%
+{\Large #1}%
+\writetocentry{unnumbered}{#1}\medskip\nobreak\noindent}
+
+\def\references{\unnumberedchapter{References}}
+\def\contents{\noindent{\Large Contents}\bigskip\nobreak\noindent}
+
+\def\pagenumbers{\footline={\hss\tenrm\folio\hss}}
+
+
+%\def\url#1{{\verbatim #1 |endverbatim}}
+\def\url#1{{\tt #1}}
+
+%\def\back{\!\!\!\!\!\!\!\!\!\!}
+\def\back{}
+\def\col#1#2{\left(\matrix{#1\cr#2\cr}\right)}
+\def\row#1#2{\left(\matrix{#1&#2\cr}\right)}
+\def\mat#1#2#3#4{\left(\matrix{#1&#2\cr#3&#4\cr}\right)}
+\def\matd#1#2{\left(\matrix{#1&\back0\cr0&\back#2\cr}\right)}
+\def\p#1#2{{\partial#1\over\partial#2}}
+\def\cg#1#2#3#4#5#6{({#1},\,{#2},\,{#3},\,{#4}\,|\,{#5},\,{#6})}
+\def\half{{\textstyle{1\over2}}}
+\def\jsym#1#2#3#4#5#6{\left\{\matrix{
+{#1}&{#2}&{#3}\cr
+{#4}&{#5}&{#6}\cr
+}\right\}}
+
+\font\dsrom=dsrom10
+
+
+%See Character Table for cmmib10:
+%http://www.math.union.edu/~dpvc/jsmath/download/extra-fonts/cmmib10/cmmib10.html
+\font\mib=cmmib10
+\def\balpha{\hbox{\mib\char"0B}}
+\def\bbeta{\hbox{\mib\char"0C}}
+\def\bgamma{\hbox{\mib\char"0D}}
+\def\bdelta{\hbox{\mib\char"0E}}
+\def\bepsilon{\hbox{\mib\char"0F}}
+\def\bzeta{\hbox{\mib\char"10}}
+\def\boldeta{\hbox{\mib\char"11}}
+\def\btheta{\hbox{\mib\char"12}}
+\def\biota{\hbox{\mib\char"13}}
+\def\bkappa{\hbox{\mib\char"14}}
+\def\blambda{\hbox{\mib\char"15}}
+\def\bmu{\hbox{\mib\char"16}}
+\def\bnu{\hbox{\mib\char"17}}
+\def\bxi{\hbox{\mib\char"18}}
+\def\bpi{\hbox{\mib\char"19}}
+\def\brho{\hbox{\mib\char"1A}}
+\def\bsigma{\hbox{\mib\char"1B}}
+\def\btau{\hbox{\mib\char"1C}}
+\def\bupsilon{\hbox{\mib\char"1D}}
+\def\bphi{\hbox{\mib\char"1E}}
+\def\bchi{\hbox{\mib\char"1F}}
+\def\bpsi{\hbox{\mib\char"20}}
+\def\bomega{\hbox{\mib\char"21}}
+
+\def\bvarepsilon{\hbox{\mib\char"22}}
+\def\bvartheta{\hbox{\mib\char"23}}
+\def\bvarpi{\hbox{\mib\char"24}}
+\def\bvarrho{\hbox{\mib\char"25}}
+\def\bvarphi{\hbox{\mib\char"27}}
+
+%how to use:
+%$$\alpha\balpha$$
+%$$\beta\bbeta$$
+%$$\gamma\bgamma$$
+%$$\delta\bdelta$$
+%$$\epsilon\bepsilon$$
+%$$\zeta\bzeta$$
+%$$\eta\boldeta$$
+%$$\theta\btheta$$
+%$$\iota\biota$$
+%$$\kappa\bkappa$$
+%$$\lambda\blambda$$
+%$$\mu\bmu$$
+%$$\nu\bnu$$
+%$$\xi\bxi$$
+%$$\pi\bpi$$
+%$$\rho\brho$$
+%$$\sigma\bsigma$$
+%$$\tau\btau$$
+%$$\upsilon\bupsilon$$
+%$$\phi\bphi$$
+%$$\chi\bchi$$
+%$$\psi\bpsi$$
+%$$\omega\bomega$$
+%
+%$$\varepsilon\bvarepsilon$$
+%$$\vartheta\bvartheta$$
+%$$\varpi\bvarpi$$
+%$$\varrho\bvarrho$$
+%$$\varphi\bvarphi$$
+
+%small font
+\font\mibsmall=cmmib7
+\def\bsigmasmall{\hbox{\mibsmall\char"1B}}
+

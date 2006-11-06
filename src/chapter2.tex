@@ -1,0 +1,342 @@
+\chapter{Dirac Equation}
+
+\section{Introduction}
+
+The Dirac equation for one particle is \cite{strange,zabloudil}:
+$$H\psi=W\psi\,,\no{diraceq}$$
+$$H=c\balpha\cdot{\bf p}+\beta mc^2+V(r)\hbox{\dsrom1}\,,$$
+where $\psi$ is a four component vector:
+$$\psi=\left(\matrix{\psi_1\cr\psi_2\cr\psi_3\cr\psi_4\cr}\right)
+=\col{\psi_A}{\psi_B}\,,\qquad
+\psi_A=\col{\psi_1}{\psi_2}\!,\,\psi_B=\col{\psi_3}{\psi_4}$$
+and $\balpha$, $\beta$ are $4\times4$ matrices:
+$$\balpha=\mat{0}{\bsigma}{\bsigma}{0}\,,$$
+$$\beta=\mat{\hbox{\dsrom1}}{0}{0}{-\hbox{\dsrom1}}\,,$$
+where the Pauli matrices $\bsigma=(\sigma_x,\sigma_y,\sigma_z)$ and
+$\hbox{\dsrom1}$ form a basis of all $2\times2$ Hermitian matrices.
+Substituting all of this into \rno{diraceq} yields: 
+$$c\,\bsigma\cdot{\bf p}\col{\psi_B}{\psi_A}=
+\matd{W-V-mc^2}{W-V+mc^2}\col{\psi_A}{\psi_B}\,.\no{dirac2}$$
+To derive a continuity equation, we multiply \rno{diraceq} by $\psi^*$
+and subtract the conjugate transpose of \rno{diraceq} multiplied by $\psi$:
+$$\p{}{t}(\psi^*\psi)=-\nabla\cdot(c\psi^*\balpha\psi)\,,$$
+so we identify the probability and current densities as
+$$\rho=\psi^*\psi=\psi_1^*\psi_1+\psi_2^*\psi_2+\psi_3^*\psi_3+\psi_4^*\psi_4\,,
+\qquad {\bf j}=c\psi^*\balpha\psi\,.$$
+The normalization of a four-component wave function is then
+$$
+\int \rho \,\d^3x=
+\int \psi^*\psi \,\d^3x=
+\int \psi_1^*\psi_1+\psi_2^*\psi_2+\psi_3^*\psi_3+\psi_4^*\psi_4 \,\d^3x=
+1\,.\no{norm}$$
+The probability density $\rho(x,y,z)$ is the physical quantity we are
+interested in, and all the four-component wavefunctions and other formalism is
+just a way of calculating it. This $\rho$ is also the thing we should compare
+with the Schr\"odinger equation. 
+
+\section{Derivation of the radial equation}
+
+We rewrite $\bsigma\cdot{\bf p}$ \cite{branson}:
+$$\bsigma\cdot{\bf p}={1\over r}{\bsigma\cdot{\bf x}\over r}
+\left(-i\hbar r \p{}{r}+i\bsigma\cdot{\bf L}\right),\no{sigmap}$$
+and search for a basis in the form
+$$\psi_A=g\chi^{j_3}_{\kappa}\,,\no{psia}$$
+$$\psi_B=if\chi^{j_3}_{-\kappa}\,.\no{psib}$$
+We chose this form, because we want $\psi_A$ and $\psi_B$ to have the same $j$
+and $j_3$, so the only thing they can differ in is $l$ (the two allowed
+possibilities are $l=j\pm\half$). According to \rno{chi1}, \rno{chi2},
+\rno{chi3} and \rno{chi2}, this corresponds to $\pm\kappa$ (see also
+\cite{kellog,strange,rose,branson} and the appendix for more information about
+spin-angular functions).
+
+Substituting \rno{psia}, \rno{psib} and \rno{sigmap} into \rno{dirac2} we get:
+$$c{1\over r}{\bsigma\cdot{\bf x}\over r} \left(-i\hbar r
+\p{}{r}+i\bsigma\cdot{\bf
+L}\right)\col{if\chi^{j_3}_{-\kappa}}{g\chi^{j_3}_{\kappa}}=
+\hskip3cm
+$$ 
+$$
+\hskip3cm
+=
+\matd{W-V-mc^2}{W-V+mc^2}\col{g\chi^{j_3}_{\kappa}}{if\chi^{j_3}_{-\kappa}}\,,$$
+Both $\psi_A$ and $\psi_B$ are eigenvectors of the operator 
+$K=\beta(\bsigma\cdot{\bf L}+\hbar)$:
+$$K\psi_{A,B}=-\hbar\kappa\psi_{A,B}\,,$$
+so the action of the $\bsigma\cdot{\bf L}$ operator on the
+$\psi_A$ and $\psi_B$ can easily be determined:
+$$\bsigma\cdot{\bf L}\col{\psi_A}{\psi_B}=
+(\beta K-\hbar)\col{\psi_A}{\psi_B}=
+\hskip3cm
+$$ 
+$$
+\hskip3cm
+=
+\matd{K-\hbar}{-K-\hbar}\col{\psi_A}{\psi_B}=
+\col{\hbar(-\kappa-1)\psi_A}{\hbar(\kappa-1)\psi_B}$$
+and we can write
+$$c{1\over r}{\bsigma\cdot{\bf x}\over r} 
+\col{(-i\hbar r\p{}{r}+i(\kappa-1)\hbar)if\chi^{j_3}_{-\kappa}}
+{(-i\hbar r\p{}{r}+i(-\kappa-1)\hbar)g\chi^{j_3}_{\kappa}}=
+\hskip3cm
+$$ 
+$$
+\hskip3cm
+=
+\matd{W-V-mc^2}{W-V+mc^2}\col{g\chi^{j_3}_{\kappa}}{if\chi^{j_3}_{-\kappa}}\,.$$
+The operator ${\bsigmasmall\cdot{\bf x}\over r}$ also only acts on the angular
+momentum parts of the state \cite{strange} (page 59). 
+From \rno{parity:appendix}:
+$${\bsigma\cdot{\bf x}\over r}\chi^{j_3}_{\kappa}=-\chi^{j_3}_{-\kappa}\,,$$
+$${\bsigma\cdot{\bf x}\over r}\chi^{j_3}_{-\kappa}=-\chi^{j_3}_{\kappa}\,,$$
+so
+$$c{1\over r} 
+\col{(i\hbar r\p{}{r}-i(\kappa-1)\hbar)if\chi^{j_3}_{\kappa}}
+{(i\hbar r\p{}{r}+i(\kappa+1)\hbar)g\chi^{j_3}_{-\kappa}}=
+\hskip3cm
+$$ 
+$$
+\hskip3cm
+=
+\matd{W-V-mc^2}{W-V+mc^2}\col{g\chi^{j_3}_{\kappa}}{if\chi^{j_3}_{-\kappa}}\,,$$
+rewriting
+$$\hbar c{1\over r} 
+\matd{(-r\p{}{r}+(\kappa-1))f}
+{(r\p{}{r}+(\kappa+1))g}\col{\chi^{j_3}_{\kappa}}{i\chi^{j_3}_{-\kappa}}=
+\hskip3cm$$
+$$\hskip3cm=\matd{(W-V-mc^2)g}{(W-V+mc^2)f}
+\col{\chi^{j_3}_{\kappa}}{i\chi^{j_3}_{-\kappa}}\,,$$
+and canceling the same terms on both sides finally yields
+$$\hbar c
+\col{-\p{f}{r}+{\kappa-1\over r}f}
+{\p{g}{r}+{\kappa+1\over r}g}=
+\col{(W-V-mc^2)g}{(W-V+mc^2)f}\,.\no{radialdirac}$$
+This is the radial Dirac equation. As we shall see in the next section, the
+equation for $g$ is (with the exception of a few relativistic corrections)
+identical to the radial Schr\"odinger equation. And $f$ vanishes
+in the limit $c\to\infty$. For this reason $f$ is called the small 
+(fein, minor) component and $g$ the large (gro\ss, major) component. 
+
+The probability density is
+$$\rho=\psi^*\psi=\psi^*_A\psi_A+\psi^*_B\psi_B=
+f^2\chi^{j_3*}_{-\kappa}\chi^{j_3}_{-\kappa}+
+g^2\chi^{j_3*}_{\kappa}\chi^{j_3}_{\kappa}\,,
+$$
+so from the normalization condition \rno{norm} we get
+$$
+\int \rho \,\d^3x=
+\int f^2\chi^{j_3*}_{-\kappa}\chi^{j_3}_{-\kappa}+
+g^2\chi^{j_3*}_{\kappa}\chi^{j_3}_{\kappa} \,\d^3x=
+\int (f^2\chi^{j_3*}_{-\kappa}\chi^{j_3}_{-\kappa}+
+g^2\chi^{j_3*}_{\kappa}\chi^{j_3}_{\kappa})\,r^2\,\d r\d\Omega=
+$$
+$$
+=\int_0^\infty\!\!\!\!\!f^2r^2\,\d r\int\chi^{j_3*}_{-\kappa}\chi^{j_3}_{-\kappa}
+\,\d\Omega+
+\int_0^\infty\!\!\!\!\!g^2r^2\,\d r\int\chi^{j_3*}_{\kappa}\chi^{j_3}_{\kappa}
+\,\d\Omega=
+\int_0^\infty r^2(f^2+g^2)\,\d r=1\,,
+$$
+where we used the normalization of spin-angular functions \rno{spinnorm}.
+Also it can be seen, that the radial probability density
+is 
+$$\rho(r)=r^2(f^2+g^2)$$
+(i.e., the probability to find the electron
+between $r_1$ and $r_2$ is $\int_{r_1}^{r_2}r^2(f^2+g^2)\,\d r$). In the 
+nonrelativistic case, the density is given by
+$$\rho(r)=r^2R^2\,,$$
+so the correspondence between the Schr\"odinger and Dirac equation is 
+$R^2=f^2+g^2$. 
+
+
+\section{Numerical integration for a given $E$}
+
+We rewrite \rno{radialdirac} to a form found in \cite{strange} (eq. 8.10 and
+8.12):
+$$\eqalignno{
+g_\kappa'&=-{\kappa+1\over r}g_\kappa+{1\over c\hbar}(W-V+mc^2)f_k\,,\nno{strange1}\cr
+f_\kappa'&=+{\kappa-1\over r}f_\kappa-{1\over c\hbar}(W-V-mc^2)g_k\,.\nno{strange2}\cr
+}$$
+Let $\hbar=1$ and define $E=W-mc^2$, so that $E$ doesn't contain the electron
+rest mass energy. Next we define a relativistic mass
+$$M=m+{1\over2c^2}(E-V)\no{relmass}$$
+and we get 
+$$\eqalignno{
+g_\kappa'&=-{\kappa+1\over r}g_\kappa+2Mcf_k\,,\nno{gkappa}\cr
+f_\kappa'&=+{\kappa-1\over r}f_\kappa+{1\over c}(V-E)g_k\,,\nno{fkappa}\cr
+}$$
+which are the same equations as in \cite{koelling&harmon} (eq. 2a and 2b).
+
+From \rno{gkappa} we express $f_\kappa$ and substitute it into \rno{fkappa}.
+At the same time we introduce a new variable
+$$\phi_\kappa={1\over2M}g_\kappa'\,,\no{phikappa}$$
+(beware, \cite{koelling&harmon} introduce $\phi_\kappa={1\over2Mc}g_\kappa'$)
+to simplify our equations:
+$$f_\kappa={g_\kappa'\over2Mc}+{\kappa+1\over r}{g_\kappa\over2Mc}
+={\phi_\kappa\over c}+{\kappa+1\over c}{g_\kappa\over2Mr}\,,\no{fk}$$
+differentiate
+$$f_\kappa'=
+{\phi_\kappa'\over c}+{\kappa+1\over c}\left(g_\kappa\over2Mr\right)'
+={\phi_\kappa'\over c}+{\kappa+1\over cr}\phi_\kappa+
+{\kappa+1\over2M^2cr}g_\kappa{V'\over2c^2}-{\kappa+1\over2Mcr^2}g_\kappa$$
+and substitute $f_\kappa$ and $f_\kappa'$ back to \rno{fkappa}:
+$$
+{\phi_\kappa'\over c}+{\kappa+1\over cr}\phi_\kappa+
+{\kappa+1\over2M^2cr}g_\kappa{V'\over2c^2}-{\kappa+1\over2Mcr^2}g_\kappa=$$
+$$={\kappa-1\over r}
+\left(
+{\phi_\kappa\over c}+{\kappa+1\over c}{g_\kappa\over2Mr}
+\right)
++{1\over c}(V-E)g_k\,,$$
+by a simplification we finally get
+$$
+\phi_\kappa'(r)=-{2\over r}\phi_\kappa(r)+\left[\big(V(r)-E\big)+
+{\kappa(\kappa+1)\over 2M(r)r^2}-
+{\kappa+1\over4M^2(r)c^2r}V'(r)\right]g_\kappa(r)\,.\no{phideriv}
+$$ 
+Equations \rno{phideriv}, \rno{phikappa} and \rno{relmass} are the equations
+we are solving. It is instructive to write equation for $g_\kappa$
+directly. For this, we need to calculate 
+$$\phi_\kappa'={g''\over2M}-{g'M'\over2M^2}$$
+and substituting for $\phi_\kappa$ and $\phi_\kappa'$ into \rno{phideriv} gives
+$${g_\kappa''\over2M}-{g_\kappa'M'\over2M^2}=-{2\over
+r}{g_\kappa'\over2M}+\left[\big(V-E\big)+ {\kappa(\kappa+1)\over 2Mr^2}-
+{\kappa+1\over4M^2c^2r}V'\right]g_\kappa\,,$$
+multiplying by $2M$ and rewriting
+$${g_\kappa''}=-\left({2\over r}-{M'\over M}\right)
+g_\kappa'+\left[\big(V-E\big)+ {\kappa(\kappa+1)\over 2Mr^2}-
+{\kappa+1\over4M^2c^2r}V'\right]2Mg_\kappa\,.$$
+From \rno{relmass} it follows
+$${M'\over M}=-{V'\over2Mc^2}\,,$$
+so we finally get
+$${g_\kappa''}=-\left({2\over r}+{V'\over2Mc^2}\right)
+g_\kappa'+\left[\big(V-E\big)+ {\kappa(\kappa+1)\over 2Mr^2}-
+{\kappa+1\over4M^2c^2r}V'\right]2Mg_\kappa\,.\no{eqgk}$$
+Comparing \rno{eqgk} with \rno{radial} we clearly see the two relativistic
+corrections, both depending on $V'$ and both vanishing for $c\to\infty$ as
+expected. Also it should be noted that there is another difference, that
+\rno{eqgk} contains the relativistic mass \rno{relmass}, but \rno{radial}
+contains the rest mass $m$.
+
+All the terms in the \rno{eqgk} are the same for both possibilities
+$j=l\pm\half$ (i.e. $\kappa(\kappa+1)=l(l+1)$ for
+both $\kappa=-l-1$ and $\kappa=l$), 
+except for the spin-orbit coupling
+term ${\kappa+1\over4M^2c^2r}V'(r)$, see for example \cite{strange}
+(eq. 2.64).
+Sometimes it makes sense to
+consider a semirelativistic case, where we neglect the
+spin-orbit coupling term, in which case we are left with the
+Schr\"odinger equation with the relativistic mass $M$ and only one
+correction ${V'\over2Mc^2}$. 
+
+In practice, the potential $V$ is given on a discrete grid, so we need to
+compute it's derivative $V'$ numerically. This is the reason we solve 
+\rno{phideriv} instead of \rno{eqgk}, because we need to evaluate $V'$ only
+once for the spin-orbit term (for the semirelativistic case we don't even need
+the $V'$ at all). But besides this minor technical thing, there is no other
+reason we chose \rno{phideriv} and not \rno{eqgk}, which looks more familiar.
+
+Once we have calculated $g_\kappa$ and $\phi_\kappa$, we calculate $f_\kappa$ 
+from \rno{fk}. So the result of the radial
+Dirac equation are two functions $f_\kappa$ and $g_\kappa$. The
+physically relevant quantity is the radial probability density
+$$\rho(r)=r^2(f^2_\kappa+g^2_\kappa)\,.$$
+
+We calculate the functions $f_\kappa$ and $g_\kappa$ in a similar
+way as we calculated $R$ for the Schr\"odinger equation, thus we 
+need the asymptotic behavior at the origin. The potential
+can always be treated as $V=1/r+\cdots$ and in this case 
+it can be shown \cite{zabloudil}, that the asymptotic is 
+$$g_\kappa=r^{\beta-1}\,,$$
+$$\phi_\kappa={(\beta-1)r^{\beta-2}\over2M}\,,$$
+where 
+$$\beta=\sqrt{\kappa^2-\left(Z\over c\right)^2}\,,\no{diracasymptotic}$$
+or, if we write it explicitly, for $j=l+\half$
+$$\beta^+=\sqrt{(-l-1)^2-\left(Z\over c\right)^2}$$
+and $j=l-\half$
+$$\beta^-=\sqrt{l^2-\left(Z\over c\right)^2}\,.$$
+In the semirelativistic case (which is an approximation --- we neglect
+the spin-orbit coupling term) we choose
+$$\beta=\sqrt{\half(|\beta^+|^2+|\beta^-|^2)}=
+\sqrt{l^2+l+\half-\left(Z\over c\right)^2}\,.$$
+It should be noted that in the literature we can find other types of 
+aymptotic behaviour for the semirelativistic case, its just a question of the
+used approximation. One can hardly say that some of them are correct and
+another is not since the semirelativistic (sometimes denoted as
+scalar-relativstic) approximation itself is not correct, it's just an
+approximation.
+
+It follows from \rno{diracasymptotic} that for $j=l+\half$ the radial Dirac
+equation completely becomes the radial Schr\"odinger equation in the limit
+$c\to\infty$ (and gives exactly the same solutions). For $j=l-\half$ however, 
+we get a wrong asymptotic: we get a radial Schr\"odinger equation for $l$, but
+the asymptotic for $l-1$.
+
+
+\section{Other forms of the equations}
+
+Unfortunately, there are a lot of different forms the radial Dirac equation can
+be found in the literature. Many authors use different symbols, different
+units, I even found a mistake in \cite{donald:apw}. For the reader's comfort,
+this section is devoted to deriving and presenting the most common forms of the
+equations. 
+
+We realize the fact
+$$\eqalign{
+f_\kappa'-{\kappa-1\over r}f_\kappa&=
+{1\over r}\left({\d\over\d r}-{\kappa\over r}\right)(rf_\kappa)\,,\cr
+g_\kappa'+{\kappa+1\over r}g_\kappa&=
+{1\over r}\left({\d\over\d r}+{\kappa\over r}\right)(rg_\kappa)\,,\cr
+}$$
+and rewrite equations \rno{strange1} and \rno{strange2}:
+$$\eqalign{
+{1\over r}\left({\d\over\d r}+{\kappa\over r}\right)(rg_\kappa)
+&-{1\over c}(W-V+mc^2)f_k=0\,,\cr
+{1\over r}\left({\d\over\d r}-{\kappa\over r}\right)(rf_\kappa)
+&+{1\over c}(W-V-mc^2)g_k=0\,.\cr
+}$$
+These equations could be found in \cite{zabloudil} (eq. 8.10 and 8.9).
+Let's make the substitution \cite{donald:apw}
+$$\eqalign{
+P_\kappa&=rg_\kappa\,,\cr
+Q_\kappa&=rf_\kappa\cr
+}$$
+and write
+$$\eqalign{
+\left({\d\over\d r}+{\kappa\over r}\right)P_\kappa
+&-{1\over c}(W-V+mc^2)Q_k=0\,,\cr
+\left({\d\over\d r}-{\kappa\over r}\right)Q_\kappa
+&+{1\over c}(W-V-mc^2)P_k=0\,,\cr
+}$$
+which can be found in \cite{engel} (eq. 3 and 4: they write 
+$a_{nlj}(r)\equiv P_\kappa$ and $b_{nlj}(r)\equiv Q_\kappa$) and also
+in \cite{strange} (eq. 8.13: he uses
+$u_\kappa\equiv P_\kappa$ and $v_\kappa\equiv Q_\kappa$).
+
+Now we use \rno{relmass} and these relations become
+$$\eqalign{
+W-V+mc^2&=E-V+2mc^2=2Mc^2\,,\cr
+W-V-mc^2&=E-V\,,\cr
+}$$
+to write
+$$\eqalign{
+{\d P_\kappa\over\d r}&=-{\kappa\over r}P_\kappa+2McQ_k\,,\cr
+{\d Q_\kappa\over\d r}&={\kappa\over r}Q_\kappa-{1\over c}(E-V)P_k\,,\cr
+}$$
+which can be found in \cite{donald:apw} (eq. 2a and 2b) (there is a mistake
+there, they forgot to divide by $r$). $2M$ can be written explicitly as
+$$2M=\left[{E-V\over c^2}+2m\right]=\left[{E-V\over c^2}+2\right]\rm\,a.u.\,,$$
+so we get
+$$\eqalign{
+{\d P_\kappa\over\d r}&=-{\kappa\over r}P_\kappa+\left[{E-V\over c^2}+2\right]cQ_k\,,\cr
+{\d Q_\kappa\over\d r}&={\kappa\over r}Q_\kappa-{1\over c}(E-V)P_k\,,\cr
+}$$
+which can be found in \cite{zabloudil} (eq. 8.12 and 8.13), where they have one
+$c$
+hidden in $Q_\kappa=crf_\kappa$ and use Rydberg atomic units, so they have $1$ instead of $2$ in the square bracket.
+It can be found in \cite{bachelet} as well, they use Hartree atomic units, but
+have a different notation $G_\kappa\equiv P_\kappa$ and $F_\kappa\equiv
+Q_\kappa$, also they made a substitution $c={1\over\alpha}$.
+
+
+Some authors also use $\epsilon\equiv E$.

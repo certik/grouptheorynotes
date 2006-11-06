@@ -1,0 +1,217 @@
+\chapter{Schr\"odinger Equation}
+
+\section{Introduction}
+
+The Schr\"odinger equation describes a nonrelativistic particle in a potential
+field. It cannot be derived, we always have to postulate something, more or
+less equivalent to the equation itself:
+$$H\psi=E\psi\,,$$
+$$H={p^2\over2M}+V\,,\no{schrodinger}$$
+where $\psi(x,y,z)$ is a (complex) function, ${\bf p}=-i\hbar\nabla$,
+$M$ is a mass of the particle (in our case an electron), $V(x,y,z)$ the
+potential field (in our case we only have a spherically symmetric
+field $V(r)$). A physical quantity we are actually interested in
+is a probability density $\rho=\psi^*\psi$. 
+
+The electron has to be somewhere in the universe, thus we want 
+$$\int \psi\,\d^3x=1\,.\no{normalization}$$
+For a given energy $E$, we can always solve the equation, but for the energies
+not lying in the spectrum of $H$, the solution exponentially diverges to
+infinity and such a solution cannot be normalized so that \rno{normalization}
+holds. To be precise - there actually exist physical solutions, which are not
+normalizable according to \rno{normalization} (the ones lying in the continuous
+part of the spectrum, for example a free electron, $V=0$), but in our case of
+bounded states in a potential, we always have a discrete spectrum.
+
+The condition \rno{normalization} picks up only certain energies
+(eigenvalues), when the solution doesn't diverge. We label the
+energies by an integer number $n$ starting from the lowest one $n=1$, second
+lowest $n=2$ etc. 
+
+Besides energy, the solution also depends on quadrate of angular momentum ($l$)
+and it's $z$ component ($m$). As it turns out, the radial part of the
+solution depends on $n$ and $l$ only.
+
+So we want to solve the eigenvalue problem of finding a solution for a given
+$n$ and $l$.
+
+\section{Radial Schr\"odinger equation}
+
+We have a spherically symmetric potential energy
+$$V({\bf x})=V(r)\,.$$
+State with a given square of an angular momentum (eigenvalue
+$l(l+1)$) and its $z$ component (eigenvalue $m$) is described by the wave
+function
+$$\psi_{nlm}({\bf x})=R_{nl}(r)\,Y_{lm}\left({\bf x}\over r\right)\,,\no{psi}$$
+where $R_{nl}(r)$ obeys the equation \cite{formanek} (eq. 2.400)
+$$R_{nl}''+{2\over r}R_{nl}'+{2M\over\hbar^2}(E-V)R_{nl}-
+{l(l+1)\over r^2}R_{nl}=0\,.\no{radial}$$
+This is called the radial Schr\"odinger equation which
+we want to solve numerically.
+
+The derivation is well-known \cite{formanek,sakurai}, so just briefly.
+Basically, it's just a separation of variables: we decompose the space as a
+tenzor product $\hbox{\dsrom R}^3=\hbox{\dsrom S}^2\times\hbox{\dsrom R}$,
+where $\hbox{\dsrom S}^2$ is a unit sphere and $\hbox{\dsrom R}$ is the radial
+part. We choose a basis in $\hbox{\dsrom S}^2$, it turns out that spherical
+harmonics $Y_{lm}$ are a good choice as they are eigenvectors of $L^2$ and
+$L_3$. We will search for all solutions of the form \rno{psi}. Substituting
+\rno{psi} into the equation \rno{schrodinger} yields \rno{radial}: the trick is
+to write $\nabla^2$ in spherical coordinates, the angular derivatives will
+then act on $Y_{lm}$ only, thus separating the equaion. It turns out, that all
+the solutions $R_{nl}$ form a basis of $\hbox{\dsrom R}$. So we have found a
+basis of $\hbox{\dsrom R}^3$, which is also a solution of \rno{schrodinger} and
+thus any other solution can be found as a (possibly infinite) linear
+combination of $\psi_{nlm}$.
+
+\section{Numerical integration for a given $E$}
+
+Equation \rno{radial} is the linear ordinary differential equation of the second
+order, so the general solution is a linear combination of two independent
+solutions. Normally, the $2$ constants are determined from initial and/or
+boundary conditions. In our case, however, we don't have any other condition
+besides being interested in solutions that we can integrate on the interval
+$(0,\infty)$ (and which are normalizable), more exactly we want
+$R\in L^2$ and $\int_0^\infty r^2R^2\,\d r=1$. 
+
+It can be easily shown by a direct substitution, that there are only two
+asymptotic behaviors near the origin: $r^l$ and $r^{-l-1}$. We are interested
+in quadratic integrable solutions only, so we are left with $r^l$
+and only one integration constant, which we calculate from a normalization.
+This determines the solution uniquely.
+
+All the integration algorithms needs to evaluate $R''$, which is a
+problem at the origin, where all the terms in the equation are infinite,
+although their sum is finite. We thus start to integrate the equation at some
+small $r_0$ (for example $r_0=10^{-10}\rm\,a.u.$), where all the terms in the
+equation are finite. If we find the initial conditions $R(r_0)$ and
+$R'(r_0)$, the solution is then fully determined.
+
+If $r_0$ is sufficiently small, we can set $R(r_0)=r_0^l$ and
+$R'(r_0)=lr_0^{l-1}$. This works fine for $l>0$. For $l=0$, it is not strictly
+correct, but it works well
+in practice because the fourth-order Runge-Kutta method is able to quickly
+correct the initial derivative guess.
+
+So when somebody gives us $l$ and $E$, we are now able to compute the solution
+but the multiplicative constant that is later determined from a
+normalization. As was already mentioned, we used the fourth-order Runge-Kutta
+method that proved very suitable for this problem. 
+
+
+
+\section{Asymptotic behavior}
+
+The asymptotic behavior is important for the integration routine to find
+the correct solution for a given $E$. In this section we look into more details
+of the asymptotic expansion and illustrate it on 2 examples.
+
+It is well known, that the first
+term of the Taylor series of the solution is $r^l$, independent
+of the potential \cite{formanek} (eq. 2.408). This is enough
+information to find the correct solution for $l>0$ because the only
+thing we need to know is the value of the wave function and its derivative
+near the origin, which is effectively $r_0^l$ and $lr_0^{l-1}$ for some small
+$r_0$. The problem is with $l=0$, where the
+derivative cannot be calculated just from $l$ and $r_0$. This section shows why
+and in the next section we show how we solved the problem.
+
+We start with the radial Schr\"odinger equation \rno{radial}
+and we shall search for the solution $R$ in the form of a Taylor series:
+$$R=a_0+a_1r+a_2r^2+\dots=\sum_{k=0}^\infty a_kr^k\,.$$
+Substituting this into the equation we get:
+$$
+\sum_{k=0}^\infty r^ka_k\left[k(k+1)-l(l+1)\right]+
+%{2M\over\hbar^2}E\sum_{k=2}^\infty r^ka_{k-2}
+%-{2M\over\hbar^2}V\sum_{k=2}^\infty r^ka_{k-2}=0\,.\no{asym1}
+{2M\over\hbar^2}(E-V)\sum_{k=2}^\infty r^ka_{k-2}
+=0\,.\no{asym1}
+$$
+Let's assume we have a potential $V$ of the form:
+$$V={v_{-1}\over r}+v_0+v_1r+v_2r^2+\dots=\sum_{j=-1}^\infty v_jr^j\,,$$
+we rearrange the double sum on the right hand side of \rno{asym1}
+$$
+V\sum_{k=2}^\infty r^ka_{k-2}=
+\sum_{j=-1}^\infty\sum_{k=2}^\infty v_jr^jr^ka_{k-2}=
+\sum_{j=-1}^\infty\sum_{k=j+2}^\infty v_jr^ka_{k-j-2}=
+$$
+$$
+=\sum_{j=0}^\infty\sum_{k=j}^\infty v_{j-1}r^{k+1}a_{k-j}=
+\sum_{k=0}^\infty\sum_{j=0}^k v_{j-1}r^{k+1}a_{k-j}=
+\sum_{k=0}^\infty r^{k+1}\sum_{j=0}^k v_{j-1}a_{k-j}=
+$$
+$$
+=\sum_{k=1}^\infty r^{k}\sum_{j=0}^{k-1} v_{j-1}a_{k-j-1}
+$$
+So we get:
+$$\sum_{k=0}^\infty r^ka_k\left[k(k+1)-l(l+1)\right]+
+{2M\over\hbar^2}E\sum_{k=2}^\infty r^ka_{k-2}+
+$$
+$$
+-{2M\over\hbar^2}\sum_{k=1}^\infty r^{k}\sum_{j=0}^{k-1} v_{j-1}a_{k-j-1}=0\,.
+$$
+This equation holds for every $r$, thus we collect
+the coefficients at $r^k$ and they must vanish. We get:
+$$\eqalignno{
+k=0&\qquad a_0[-l(l+1)]=0\,,\nno{asymk0}\cr
+k=1&\qquad a_1[2-l(l+1)]-{2M\over\hbar^2}v_{-1}a_0=0\,,\nno{asymk1}\cr
+k\ge2&\qquad a_k[k(k+1)-l(l+1)]-
+{2M\over\hbar^2}\sum_{j=0}^{k-1}v_{j-1}a_{k-j-1}+
+{2M\over\hbar^2}Ea_{k-2}=0\,.\nno{asymk2}\cr
+}$$
+
+This enables us to calculate all the Taylor coefficients of the solution.  To see
+how it works, we calculate two examples and compare them to the analytical
+solution.
+First, let 
+$$V=-{Z\over r}\,,$$
+so $v_{-1}=-Z$, $v_0=v_1=\dots=0$. For $l=0$, we see from \rno{asymk0} that
+$a_0$ can by any number (including zero, but as we will see in a moment, this
+would imply the zero solution, which we are obviously not interested in).
+From \rno{asymk1} it follows:
+$$a_1=-{MZ\over\hbar^2}a_0={-a_0\over a}\,,$$
+where $a={\hbar^2\over ZM}$ is the Bohr radius. The first two terms of the
+solution are then:
+$$R=a_0(1-{r\over a}+O(r^2))\,,$$
+which is in agreement with the analytic solution 
+\cite{formanek} (eq. 2.524) (every $R_{nl}$ for $l=0$):
+$$\eqalign{
+R_{10}&=2\sqrt{1\over a^3}\exp\left(-{r\over a}\right)\,,\cr
+R_{20}&=\sqrt{1\over2a^3}\left[1-{r\over2a}\right]\exp\left(-{r\over 2a}\right)\,,\cr
+R_{30}&={2\over3}\sqrt{1\over3a^3}\left[1-{2r\over3a}+
+{2\over27}\left(r\over a\right)^2\right]\exp\left(-{r\over3a}\right)\,,\cr
+R_{40}&={1\over4a^{3/2}}\sqrt{1\over a^3}\left[1-{3r\over4a}+
+{1\over8}\left(r\over a\right)^2-{1\over192}\left(r\over
+a\right)^3\right]\exp\left(-{r\over4a}\right)\,.\cr
+}$$
+
+As the second example, we use a linear harmonic oscillator
+$$V={M\omega^2r^2\over2}\,,$$
+so $v_{-1}=v_0=v_1=0$, $v_2={M\omega^2\over2}$, $v_3=v_4=\dots=0$. 
+For $l=0$, we see from \rno{asymk0} that $a_0$ is any number, from 
+\rno{asymk1} it follows $a_1=0$ and from \rno{asymk2} we get
+$a_2=-{MEa_0\over3\hbar^2}$. But we know the spectrum 
+\cite{formanek} (eq. 2.484):
+$$E=\hbar\omega(2n+l+{3\over2})\,,$$
+so we have $a_2=-{M\omega(2n+{3\over2})a_0\over3\hbar}=-({2\over3}n+{1\over2})
+{a_0\over a^2}$, where we used the substitution $a=\sqrt{\hbar\over M\omega}$.
+Finally the first two nonzero terms of the solution are:
+$$R=a_0\left(1-\left({2\over3}n+{1\over2}\right){r^2\over a^2}+
+O(r^3)\right)\,,$$
+which agrees with the analytic solution \cite{formanek} (eq. 2.488)
+(again every $R_{nl}$ for $l=0$):
+$$\eqalign{
+R_{00}&={2\over\pi^{1/4}}\sqrt{1\over3a^3}\exp\left(-{r^2\over2a^2}\right)\,,\cr
+R_{10}&={1\over\pi^{1/4}}\sqrt{6\over a^3}\left[1-
+{2\over3}\left(r\over a\right)^2\right]\exp\left(-{r^2\over2a^2}\right)\,.\cr
+}$$
+
+These examples show, that for $l=0$ the derivative $R'$ (the second term in
+the $R$ expansion) nontrivially depends on $V$ in the first example, and on $E$ in the second
+example. Which is inconvenient for a numerical computation.
+
+For $l>0$, the Taylor coefficients can be calculated in the same way as 
+for $l=0$.
+From \rno{asymk0}, \rno{asymk1} and \rno{asymk2} we see that 
+$a_k=0$ for all $k<l$. So indeed the first nonzero term is $a_lr^l$ as
+expected.
