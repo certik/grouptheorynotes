@@ -2,4 +2,110 @@
 
 \section{Theory}
 
-later
+Definition of a group:
+
+\halign{#\quad &#\hfil\cr
+I1 & $x,y \in G  \Rightarrow  xy \in G$ \cr
+I2 & there exist $e$ such that $ex=xe=x$ for each $x\in G$ \cr
+I3 & there exist $x^{-1}$ such that $xx^{-1}=x^{-1}x=e$ for each $x\in G$ \cr
+I4 & $(xy)z=x(yz)$ for each $x,y,z\in G$ \cr
+}
+
+\medskip
+
+Every finite group is isomorphic to a subgroup of $S_n$ (permutations).
+
+Representation:
+
+Set of linear operators T(x) (for each $x\in G$ there is one $T(x)$)
+$$T(x)T(y)=T(xy),\quad T(e)=1\,.$$
+
+T(x) fulfils all the group axioms I1, I2, I3, I4.
+
+The representation T(x) is said to be 'faithful' if there is a one-to-one
+relationship between T(x) and x (an isomorphism).
+
+Equivalent representations $D_1$ and $D_2$: there exist $S$ such that
+$D_2=SD_1(x)S^{-1}$ for each $x\in G$.
+
+Reducible representation $D(x)$: there exist 
+$$D'(x)=SD(x)S^{-1}=\matd{D_1'}{D_2'}$$ for each $x\in G$.
+We say that $D'$ is a direct sum of $D_1'$ and $D_2'$: $D'=D_1'\oplus D_2'$.
+
+Irreducible representation: is not reducible.
+
+Conjugate element: $x$ is conjugate to $y$ ($x\sim y$) if there exist $c$ such that:
+$$x=cyc^{-1}$$
+
+if $x\sim y$ and $y\sim z$ then $x\sim z$.
+
+conjugate class: elements which are all conjugate to each other
+
+no element may belong to more than one class $\Rightarrow$ every group may be
+broken up into separate classes.
+
+character $\chi$ of the representation $D(x)$: set of numbers $\chi(x)$ as the
+group element $x$ runs through the group $\chi(x)=\Tr D(x)$
+
+Equivalent representations have the same character:
+$$\chi'(x)=\Tr D'(x)=\Tr SD(x)S^{-1}=\Tr D(x)=\chi(x)$$
+
+Representations having the same character are equivalent.
+
+Proof: Characters can be thought of as elements of a q-dimensional vector space
+where q is the number of conjugacy classes. Using the orthogonality relations
+derived above, we find that the q characters for the q inequivalent irreducible
+representations forms a basis set. Also, according to Maschke's theorem, both
+representations can be expressed as the direct sum of irreducible
+representations. Since the character of the direct sum of representations is
+the sum of their characters, from linear algebra, we see they are equivalent.
+
+All the elements in the same class have the same character.
+
+Maschke's theorem: for finite groups, every class of equivalent representations
+contains unitary representations. The theorem is also true for most infinite
+groups on interest in physics.
+
+Let $T$ be a reducible representation, then:
+$$T=m_1T^{(1)} \oplus m_2T^{(2)} \oplus m_3T^{(3)}\oplus \cdots$$
+where $T^{(1)}$, $T^{(2)}$, $T^{(3)}$ \dots are all the inequivalent irreducible
+representations and $m_\alpha$ ($\alpha=1,2,3,\dots$) gives the number of times
+that the irreducible representation $T^{(\alpha)}$ occurs in the reduction.
+
+Similar relation holds for group characters:
+$$\chi=m_1\chi^{(1)} + m_2\chi^{(2)} + m_3\chi^{(3)} + \cdots$$
+and it can be shown 4.28, p. 63:
+$$m_\alpha={1\over g}\sum_{x\in G} \chi^{(\alpha)*}(x)\chi(x)=
+{1\over g}\sum_{p} c_p\chi^{(\alpha)*}_p\chi_p$$
+where $c_p$ is the number of elements in the class $p$, $g$ is the number of
+elements in $G$ (the order of the group).
+
+Number of irreducible representations $=$ the number of classes.
+
+
+\section{Point groups}
+
+Karel+Ondra
+
+\section{Construction and usage of the character table}
+
+Ondra
+
+Construction of the character table, 4.15, p 67
+
+\section{Applications of finite groups}
+
+Multiplets (Ondra), transitions (Karel) and vibrations (Karel)
+
+
+
+
+\chapter{Continuous Groups}
+
+\section{Lie groups+algebras}
+
+Karel
+
+\section{Young diagrams}
+
+Karel
