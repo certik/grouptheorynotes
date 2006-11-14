@@ -5,7 +5,7 @@ name=groups
 dir=$(pwd)
 export TEXINPUTS="$dir/macros:$dir/src:$dir/images:"
 export BIBINPUTS="$dir/src:"
-echo $TEXINPUTS
+#echo $TEXINPUTS
 
 tex -jobname $name -fmt=csplain -output-directory tmp main.tex
 bibtex tmp/$name
