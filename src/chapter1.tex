@@ -18,9 +18,12 @@ Every finite group is isomorphic to a subgroup of $S_n$ (permutations).
 Representation:
 
 Set of linear operators T(x) (for each $x\in G$ there is one $T(x)$)
-$$T(x)T(y)=T(xy),\quad T(e)=1\,.$$
+$$T(x)T(y)=T(xy),\quad T(e)={\hbox{\dsrom 1}}\,.$$
 
-T(x) fulfils all the group axioms I1, I2, I3, I4.
+T(x) fulfils all the group axioms I1, I2, I3, I4. The requirement $T(e)=1$ is
+non-trivial, consider for example the following 4 matrices
+$$T(\bsigma)=\matd{\bsigma}{0}, \quad T(e)=\matd{\hbox{\dsrom 1}}{0}\,,$$
+which fulfil $T(x)T(y)=T(xy)$ but not $T(e)={\hbox{\dsrom 1}}$.
 
 The representation T(x) is said to be 'faithful' if there is a one-to-one
 relationship between T(x) and x (an isomorphism).
