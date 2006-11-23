@@ -96,8 +96,42 @@ a molecule or an arrangement of atoms in the unit cell, the symmetry will be
 reduced to the subgroup which leaves the unit cell invariant.
 
 The complete list of all possible crystallographic point groups will therefore
-be given by the above seven together with all their subgroups. There are 32 of
-them: ...
+be given by the above seven together with all their subgroups:
+
+\halign{$#$\quad\quad &$#$\hfil\cr
+S_2    & C_{1h}, S_2 \cr
+C_{2h} & C_2, C_{1h}, C_{2h} \cr
+D_{2h} & D_2, C_{2v}, D_{2h} \cr
+D_{3d} & C_3, S_6, D_3, C_{3v}, D_{3d} \cr
+D_{4h} & C_4, S_4, C_{4h}, D_4, C_{4v}, D_{2d}, D_{4h} \cr
+D_{6h} & C_3, S_6, D_3, C_{3v}, D_{3d}, C_6, C_{3h}, C_{6h}, D_6, C_{6v},
+    D_{3h}, D_{6h} \cr
+O_h    & T, T_h, O, T_d, O_h \cr
+}
+
+There are 37 subgroups together, but $D_{3d}$ and $D_{6h}$ contain 5 equal
+subgroups, so together we get 32 distinct subgroups. Groups, which might at
+first sight appear to be missing from the list are $C_{1v}$, $D_1$, $D_{1h}$,
+$S_1$, and $S_3$, but these are the same as $C_{1h}$, $C_2$, $C_{2v}$, $C_{1h}$
+and $C_{3h}$ respectively.
+
+These groups are isomorphic: 
+
+$C_{1h}$, $S_2$, $C_2$
+
+$S_4$, $C_4$
+
+$S_6$, $C_{3h}$, $C_6$
+
+$C_{2h}$, $C_{2v}$, $D_2$
+
+$C_{3v}$, $D_3$
+
+$D_{2d}$, $C_{4v}$, $D_4$
+
+$D_{3d}$, $D_{3h}$, $C_{6v}$, $D_6$
+
+$T_d, O$
 
 \section{Construction and usage of the character table}
 
