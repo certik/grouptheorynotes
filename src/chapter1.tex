@@ -1,4 +1,7 @@
 \chapter{Finite Groups}
+%%%% Used labels:
+% eq-1-1
+% eq-1-2
 
 \section{Theory}
 
@@ -32,7 +35,12 @@ Equivalent representations $D_1$ and $D_2$: there exist $S$ such that
 $D_2=SD_1(x)S^{-1}$ for each $x\in G$.
 
 Reducible representation $D(x)$: there exist 
-$$D'(x)=SD(x)S^{-1}=\matd{D_1'}{D_2'}$$ for each $x\in G$.
+%
+$$
+D'(x)=SD(x)S^{-1}=\matd{D_1'}{D_2'}\,, \qquad \forall x\in G\,.
+\no{eq-1-1}
+$$
+%
 We say that $D'$ is a direct sum of $D_1'$ and $D_2'$: $D'=D_1'\oplus D_2'$.
 
 Irreducible representation: is not reducible.
@@ -71,9 +79,11 @@ groups on interest in physics.
 
 Let $T$ be a reducible representation, then:
 $$T=m_1T^{(1)} \oplus m_2T^{(2)} \oplus m_3T^{(3)}\oplus \cdots$$
-where $T^{(1)}$, $T^{(2)}$, $T^{(3)}$ \dots are all the inequivalent irreducible
-representations and $m_\alpha$ ($\alpha=1,2,3,\dots$) gives the number of times
-that the irreducible representation $T^{(\alpha)}$ occurs in the reduction.
+where $T^{(1)}$, $T^{(2)}$, $T^{(3)}$ \dots are 
+all the inequivalent irreducible
+representations and $m_\alpha$ ($\alpha=1,2,3,\dots$) gives the number of
+times that the irreducible representation $T^{(\alpha)}$ occurs in the
+reduction.
 
 Similar relation holds for group characters:
 $$\chi=m_1\chi^{(1)} + m_2\chi^{(2)} + m_3\chi^{(3)} + \cdots$$
@@ -83,24 +93,113 @@ $$m_\alpha={1\over g}\sum_{x\in G} \chi^{(\alpha)*}(x)\chi(x)=
 where $c_p$ is the number of elements in the class $p$, $g$ is the number of
 elements in $G$ (the order of the group).
 
+
+\subsection{Other facts}
+
 Number of irreducible representations $=$ the number of classes.
+
+{\tenit Regular representation} of $G$: 
+take $R^n$ with $n=\# G$ and asign a canonical
+basis to the elements $g_i$ of $G$. A matrix $A_a$ assigned to $a\in G$ now
+describes the mapping $(g_1,g_2,\ldots)\mapsto (ag_1,ag_2,\ldots)$, i.e. in if
+$ag_1=g_5$, then the fifth element of the first row is one and others of that
+row are zero in $A_a$. Each IR of the reg. rep. occurs in its decomposition
+with the multiplicity equal to its dimension. Thus (p. 65, \cite{sternberg})
+%
+$$
+  \# G = \sum p_i^2\,.
+$$
+%
+
+{\tenit Schur's lemma.} 
+(a) Be $r$ an IR of $G$. If $[r(a),T]=0$, $\forall a\in G$, then
+$T=cI$. (b) Be $r_1$, $r_2$ two inequivalent IRs of $G$. Then
+$r_1(a)T=Tr_2(a)$ valid $\forall a\in G$ implies $T=0$. See p.~55 in
+\cite{sternberg}. This can be used to derive the orthogonality relations for
+characters. 
+
+{\tenit Complete reducibility. }
+Every rep can be decomposed into IRs: true for finite
+(p.~52) and compact (p.~179 in~\cite{sternberg}) groups. Counterexample for
+larger groups, p.~53.
+
+{\tenit Sum of reps.} Opposite process to reduction, $\rho\oplus\sigma$, it
+lives on the direct sum of the two vector spaces of $\rho$ and $\sigma$.
+
+Take an IR $\rho$ of $G$. Then $\rho$ will also be a rep. of any subgroup
+$H\subset G$, but it need not be an IR, because the condition for
+reducibility, Eq.~\ref{eq-1-1}, is less strict: it suffices if the matrices
+$D(g)$ are simultaneously block diagonal only for $g\in H$, not for all $g\in
+G$. This is called {\tenit restriction } and it is denoted by $\downarrow$.
+
+{\tenit Induced representation}, denoted by $\uparrow$, is an opposite of the
+restriction. I guess that it works as follows: if $F=G\otimes H$, then
+$\rho(f)=\rho(g)$, when $f=g\otimes h$. 
+
+{\tenit Product of representations,} $\rho\otimes\sigma$ lives on the direct
+product of the two vector spaces. Product of IRs need not be an IR. Most
+prominent example: adding of angular momenta.
+
+
+
+
+
+\subsection{Interesting examples}
+
+$O$ and $T_d$ (see Point groups) are isomorphic to $S_4$ (p.~35
+in~\cite{sternberg}). Written as matrices in 3D,
+they are 3D representations. Since $O$ has only $\det A=1$ matrices unlike
+$T_d$, they are inequivalent.
+
+Homeomorphism of $SL(2,C)$ into the Lorentz group [or $SU(2)$ into $SO(3)$],
+p.~7 \cite{sternberg}. Start with the following $1-1$ correspondence between
+$\vec{x}$ and $x$: 
+%
+$$
+  \vec{x}=(x_0,x_1,x_2,x_3)^T\,,\qquad
+  x=\left(\matrix{x_0+x_3& x_1-ix_2\cr x_1+ix_2 & x_0-x_3}\right)\,.
+$$
+%
+For any matrix of $A\in SL(2,C)$ take $AxA^*=x'$. Decode $x'$ into $\vec{x}'$
+and the relation between $\vec{x}$ and $\vec{x}'$ defines uniquely a Lorentz
+transformation; thus $A$ was mapped into some Lorentz group element. If
+$x_0=0$ this gives a mapping from $SU(2)$ into $SO(3)$. The mapping is $2-1$
+because $A$ and $-A$ give the same $x'$.
+
+$SO(3)$ is not simply connected. Consider matrices
+$U_{\theta}=diag(e^{-i\theta}, e^{i\theta})\in SU(2)$, $\theta\in[0,\pi]$.
+These map into $SO(3)$ rotations by $2\theta$ around the $z$--axis. These
+matrices $A_\theta=R_{z,2\theta}$ in $SO(3)$ form a closed loop,
+$R_{z,0}=R_{z,2\pi}$. If $SO(3)$ were simply connected it would be possible to
+contract this loop into a point while keeping $A_0$ and $A_\pi$ unchanged. But
+then the same would have to happen with the original curve of matrices
+$U_\theta$ while keeping $U_0$ and $U_\pi$ at their place. Since
+$U_{\pi}=-I\not= U_0=I$, this curve is not closed and such a contraction is
+not possible.
+
+All IRs of $S_3$ are in \cite{sternberg}, p.~57.
+
+
+
+
 
 
 \section{Point groups}
 
-We are concerned with all subgroups of $O(3)$, which leave a crystal lattice
-invariant. Those are just 7: $S_2$ (triclinic), $C_{2h}$ (monoclinic), $D_{2h}$
-(orthorhombic), $D_{3d}$ (rhombohedral), $D_{4h}$ (tetragonal), $D_{6h}$
-(hexagonal) and $O_{h}$ (cubic).
+We are concerned with all subgroups of $O(3)$, which leave a monoatomic
+crystal lattice invariant. Those are just 7: $S_2$ (triclinic), $C_{2h}$
+(monoclinic), $D_{2h}$ (orthorhombic), $D_{3d}$ (rhombohedral), $D_{4h}$
+(tetragonal), $D_{6h}$ (hexagonal) and $O_{h}$ (cubic).
 
 For simple monoatomic crystals with one atom per unit cell these seven are the
-only possible crystallographic point groups. For more complicated crystals with
-a molecule or an arrangement of atoms in the unit cell, the symmetry will be
-reduced to the subgroup which leaves the unit cell invariant.
+only possible crystallographic point groups. For more complicated crystals
+with a molecule or an arrangement of atoms in the unit cell, the symmetry will
+be reduced to the subgroup which leaves not only the lattice but also the unit
+cell invariant.
 
 The complete list of all possible crystallographic point groups will therefore
-be given by the above seven together with all their subgroups:
-
+be given by the above seven together with all their subgroups
+(Tab. 3 in \cite{birss} or Tab. 4 in \cite{sternberg}):
 \halign{$#$\quad\quad &$#$\hfil\cr
 S_2    & C_{1h}, S_2 \cr
 C_{2h} & C_2, C_{1h}, C_{2h} \cr
@@ -118,7 +217,7 @@ first sight appear to be missing from the list are $C_{1v}$, $D_1$, $D_{1h}$,
 $S_1$, and $S_3$, but these are the same as $C_{1h}$, $C_2$, $C_{2v}$, $C_{1h}$
 and $C_{3h}$ respectively.
 
-These groups are isomorphic: 
+The following groups are isomorphic: 
 
 $C_{1h}$, $S_2$, $C_2$
 
@@ -136,6 +235,56 @@ $D_{3d}$, $D_{3h}$, $C_{6v}$, $D_6$
 
 $T_d, O$
 
+
+
+
+
+Comment on a procedure how to derive the above lists. Terminology:
+'crystallographic' (group) = it may be a symmetry of an infinite
+crystal (e.g. $C_5$ is excluded since pentagons cannot cover the
+plane). 1) Find all finite crystallographic subgroups of $SO(3)$,
+'rotation subgroups', 2) take each subgroup from 1), add $-I$ and
+close the subgroup, 'non-rot containing $-I$', 3) for each subgroup
+$G^\wedge$ in 1), find whether it some normal subgroups $G^+$ of index
+2 (half a size of $G^\wedge$) and construct $G^+\cup (-I)aG^+$, where
+$a\notin G^+$ and $a\in G^\wedge$; this will be a 'non-rot not
+containing $-I$' (for each $G^\wedge$ there can be zero, one or more
+such $G^+$). The sum of 1,2,3) are all finite crystallographic groups
+of $O(3)$.  The procedure is described in \cite{sternberg}, p. 28-40.
+
+An example: $O$ (all rot. symm. of a cube, i.e. no mirroring) is 1), $O^h$
+(all symm. of a cube) is 2) made of $O$ and $T_d$ (all symm. of a tetrahedron)
+is 3) made of 1). 
+
+
+
+\subsection{Zoology}
+
+Table~3 in~\cite{birss}.
+
+Symmetry operations (in Table~3 of~\cite{birss}): like HM, $2_x$ means a
+two-fold rotation around $x$--axis, $2_\perp$ means some other axis in the
+$xy$ plane than $x,y$ or $xy$ (diagonal), $\bar{3}_z$ is a rotation followed
+by $-I$. $3(2_\perp)$ means three different two-fold axes $2_\perp$.
+
+Sch\"onfliess notation: $C_n$ is an $n$--fold rotation ($2_z$, $3_z$ ...)
+group (planar polygon), $D_n$ is a diedric group, i.e. $C_n$ plus
+turn-the-page two-fold rotations (e.g. $2_x$, $2_\perp$), $T$, $O$ and $I$
+(=$Y$) are the rotational symmetries of a tetrahedron, octahedron (identical
+to those of a cube) and icosaherdron (identical to those of a dodecahedron),
+respectively. Additional indexes mean reflection planes, horizontal, vertical,
+diagonal (h,v,d) or $-I$ (i). Some atypical notation: $S_2=C_i$,
+$S_6=C_{3i}$, $S_4=C_{2i}$ (am I right?), $C_s=C_{1h}$.
+
+Hermann--Mauguin (HM, intenational) notation: 2,3,4 means $C_n$, $\bar{4}$
+means rotation-inversion axis (rotation followed by $-I$), $m$ is a vertical
+mirror plane, $/m$ is a horizontal mirror plane.
+
+
+
+
+
+
 \section{Construction and usage of the character table}
 
 Ondra
@@ -144,49 +293,167 @@ Construction of the character table \cite{elliott} (sec. 4.15, page 67):
 
 \section{Applications of finite groups}
 
-Multiplets (Ondra), transitions (Karel) and vibrations (Karel)
+Multiplets (Ondra), 
 
 
+\subsection{Distinct energy levels ('vibrations')}
+
+Assume that we know number of atoms in a molecule and measure the number of
+its distinct vibrational modes (frequencies) in a multiplet. We want to know
+its symmetry.
+
+We go through the list of all possible (point) symmetries $S$ of such a
+molecule and look at what all reps. $S$ has. If an $n$--tuplet was observed
+among the vibrational modes and there is no $n$-dimensional IR of $S$, then
+can be excluded.
+
+This procedure assumes that (a) the original symmetry $S$ is slightly disturbed
+because of something and (b) two multiplets ($m$ and $n$ dimensional) do not
+accidentally happen to have the same frequencies ('accidental degeneracy').
+
+
+
+\subsection{Selection rules ('transitions')}
+
+Probability of an optical transition is proportional to 
+%
+$$
+  \langle i| H_1 |f\rangle\,,  \no{eq-1-2}
+$$
+%
+where $|i\rangle$, $|f\rangle$ are the initial and final states and $H_1$ is
+the operator of the interaction causing the transition. This is the
+Fermi golden rule (first order time dep. perturbation theory).
+
+The integral (\ref{eq-1-2}) may vanish because of the symmetry. A simple 1D
+example is that $|f\rangle$ is an even function $f(x)$, $|i\rangle$ is an odd
+function $i(x)$ and $H_1$ is an even function $h_1(x)$. Then
+$i^*(x)h_1(x)f(x)$ is odd and thus the integral over $(-\infty,\infty)$
+vanishes. The group theory only generalizes this observation.
+
+The procedure is: find the IRs $\rho_i$, $\rho_f$ to which $|i\rangle$,
+$|f\langle$ belong and also $\rho$, the regular rep of $H_1$ in order to catch
+all IRs of $H_1$ (is this procedure correct?). Then construct
+$\rho_i\otimes\rho\otimes\rho_f$, decompose it into IRs and see if the trivial
+rep is present. If not, the integral (\ref{eq-1-2}) vanishes. This procedure
+is claimed to be equivalent to checking whether $\rho_i\otimes \rho_f$ and
+$\rho$ contain at least one common IR. 
+
+The infrared absorption (IRa) is described by $H_1\propto x$ (or $y$, $z$,
+depending probably on the polarization of light), the Raman scattering has
+$H_1\propto x^2$ (it comes from the second order perturbation theory?).
+
+
+\subsection{Zoology}
+
+Todo:
+
+\item{$\bullet$} Describe the representations $A_1$, $A_2$, $B_1$, $E$ etc. 
+
+\item{$\bullet$} Reps are specified
+by the generating functions $f(x,y,z)$ 
+and the symmetry operations $T$ acting on these functions $f(x,y,z)\mapsto
+f(x',y',z')$  then transform the arguments, $(x,y,z)\mapsto
+(x',y',z')=T(x,y,z)$. Explain what functions are commonly used ($x$,
+$R_x,\ldots$) and give maybe some examples.
+
+\item{$\bullet$} Find the ref. to the quantum chemistry book.
 
 
 \chapter{Continuous Groups}
 
 \section{Lie groups+algebras}
 
-(Karel)
+A continuous group with metrics is a Lie group (more exactly a differentiable
+manifold and $a\mapsto ag$ and $a\mapsto a^{-1}$ are differentiable $\forall
+g$, p.~172 in~\cite{sternberg}) usually a subgroup of $GL(n)$ is meant, a
+linear Lie group (i.e. matrices). Peter--Weyl theorem (p.~179
+in~\cite{sternberg}) looks like that compact Lie groups are practically as
+nice as finite groups.
 
-A continuous group with metrics is a Lie group (did I forgot anything?),
-usually a subgroup of $GL(n)$ is meant, a linear Lie group (i.e. matrices). In
-a compact (?) linear Lie group $G$, any element can be generated by
-$\exp(-tA)$ where $t\in R$ and $A$ (not necessarilly $\in G$ (?)) is one of
-the generators. Typical example: for $G=SO(3)$ there are three generators,
-$iA_x$, $iA_y$, $iA_z$, where $A_x$ is the rotation by $\pi/2$ around
-$x$--axis in $R^3$. The generators form a vector space (here the linear span
-of $iA_x$, $iA_y$, $iA_z$) with an additional operation of
-commutation. This structure is closed and it is called the Lie algebra of the
-group $G$. The commutation relations between the generators fully specify the
-Lie algebra. E.g. $[iA_x,iA_y]=iA_z$ (or minus?) and the two other ones.
+Consider $G=O(n)$, p.~234 in~\cite{sternberg}. If $A\in G$ then
+$\exp(-tA)\subset G$ where $t\in R$. At least in $O(3)$ and probably in any
+$O(n)$, any element of $G$ can be written as $\exp(-tA)$ where $A$ is a
+$\pi/2$ rotation around some axis. These $A$'s are the generators of $G$.
+
+Typical example: for
+$G=SO(3)$ there are three generators, $iA_x$, $iA_y$, $iA_z$, where $A_x$ is
+the rotation by $\pi/2$ around $x$--axis in $R^3$. The generators form a
+vector space (here the linear span of $iA_x$, $iA_y$, $iA_z$) with an
+additional operation of commutation. This structure is closed and it is called
+the Lie algebra of the group $G$. The commutation relations between the
+generators fully specify the Lie algebra. E.g. $[iA_x,iA_y]=iA_z$
+and the two other ones.
 
 This is a great simplification because a continuous (infinite) group was thus
 mapped on a vector space, the algebra, where it suffices to look at the basis
 elements, the generator. The net effect is that we have to watch only three
 objects instead of infinitely many in the example above.
 
+Todo: weights, roots and Dynkin diagrams. Octets and decuplets. Classification
+of IRs of $SU(n)$. From \cite{georgi}.
+
+
+\subsection{IRs of $SU(2)$}
+
+p.~181 in~\cite{sternberg}; alternative somewhere in \cite{georgi}.
+
+The Peter-Weyl theorem concerns also the orthogonality of characters and that
+in turn strongly restricts any possible characters of $SU(2)$. The conjugacy
+classes of $SU(2)$ are exemplified by matrices
+$U_\theta=diag(e^{i\theta},e^{-i\theta})$ and their possible characters can
+only be
+%
+$$\chi(\theta)=\sum_{k=-s}^{s} \exp(-i2k\theta)$$
+%
+with $2s$ integer.
+
+All the corresponding reps exist, they are defined on the space
+$z_1^{2s},z_1^{2s-1}z_2,\ldots, z_2^{2s}$ by
+$U_{-\theta}z_1^{2s-k}z_2^k\mapsto [\exp i(2s-2k)\theta]z_1^{2s-k}z_2^k$.
+ 
+For an IR of $SU(2)$ the complex conjugate is just the original. For other
+$SU(n)$ it is not necessarily the case, p.~182 in~\cite{sternberg}.
+
+IRs of $SO(3)$ are just those of $SU(2)$ but $s$ must be an integer.
+
+
 
 
 \section{Young diagrams}
 
-(Karel)
-
 YD is a systematic method to find all IRs of any symmetric group $S_n$
 (permutations of an $n$-element set). The idea:
 
-$\bullet$ find all equivalence classes of $S_n$
+\item{$\bullet$} find all conjugacy classes of $S_n$
 
-$\bullet$ assign an IR to each of them
+\item{$\bullet$} assign an IR to each of them
 
 \noindent
-Details are explained in Sternberg or in the lecture notes of J. Niederle. 
+Char'n of the conjugacy classes: each permutation can be decomposed into
+cycles. This cycle structure (i.e. how many cycles of length 1, how many of
+length 2, etc. $=[\nu_1,\nu_2\,\ldots,\nu_n]$) is a unique mark of each
+conjugation class. The Young diagram is written by rows, each row has
+$\lambda_i$ empty boxes and $\lambda_i-\lambda_{i+i}=\nu_i\ge 0$. Each
+conjugacy class has one YD. An YD of $S_n$ has $n$ boxes.
+
+A Young tabloid (YTd) is obtained by filling an YD with numbers $1,\ldots,n$ where
+ordering in each row does not matter. A Young tableau is an YTd where all
+orderings (thus also in rows) matter.
+
+The IRs of $S_n$. Take an YD $\lambda$. On the space of all corresponding
+YTd's ($M_\lambda$) a rep. of the $S_n$ is created. It is decomposed into IRs
+and shown to have some 'new' IR compared to $\mu>\lambda$.
+
+
+Details are explained in \cite{sternberg}, p.~76 or in the lecture notes of
+J. Niederle.  
+
+
+Comments from p.~82 of \cite{sternberg}:
+Basis of $M_\lambda$ is defined ($e_t$; $\delta_{\{t\}}$ means probably a function on
+$M_\lambda$ which is zero for all $\{y\}$ unless $\{y\}=\{t\}$). The action of
+$a\in S_n$ on this basis functions is described.
 
 
 

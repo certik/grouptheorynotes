@@ -75,6 +75,10 @@
 {\edef\n{\the\secno.\the\subno}{\twelvebf\n\ #1}%
 \writenumberedtocentry{sub}{#1}{\n}}\smallskip\nobreak\noindent}
 
+\def\subsection#1\par{\bigskip\goodbreak\noindent {\tenbf #1}%
+\smallskip\nobreak\noindent}
+
+
 \def\unnumberedchapter#1{\secskip\goodbreak\vfill\eject\noindent%
 {\Large #1}%
 \writetocentry{unnumbered}{#1}\medskip\nobreak\noindent}
