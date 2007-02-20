@@ -2,8 +2,8 @@
 
 name=groups
 
-#tex=tex
-tex=pdftex
+tex=tex
+#tex=pdftex
 
 dir=$(pwd)
 export TEXINPUTS="$dir/macros:$dir/src:$dir/images:"
